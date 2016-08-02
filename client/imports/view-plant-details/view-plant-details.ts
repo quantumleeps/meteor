@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
+import { ActivatedRoute, ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { Tracker } from 'meteor/tracker';
 import {Plants} from '../../../collections/plants.ts';
 
@@ -15,7 +15,7 @@ export class ViewPlantDetails {
     plantId: string;
     plant: Object;
 
-    constructor(private route: ActivatedRoute, private ngZone: NgZone) {}
+    constructor(private route: ActivatedRoute, private ngZone: NgZone, public router: Router) {}
     
     ngOnInit() {
         this.route.params.subscribe((params) => {
@@ -30,7 +30,6 @@ export class ViewPlantDetails {
     }
 
     savePlant(plant) {
-        console.log()
         Plants.update(plant._id, {
             $set: {
                 name: plant.name,
@@ -38,5 +37,6 @@ export class ViewPlantDetails {
                 location: plant.location
             }
         })
+        this.router.navigate(['/']);
     }
 }
