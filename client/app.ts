@@ -5,6 +5,8 @@ import { provideRouter, RouterConfig, ROUTER_DIRECTIVES } from '@angular/router'
 import { APP_BASE_HREF } from '@angular/common';
 import { ViewPlantsList } from './imports/view-plants-list/view-plants-list.ts';
 import { ViewPlantDetails } from './imports/view-plant-details/view-plant-details.ts';
+import { NewPage } from './imports/new-page/new-page.ts';
+
 
 
 import template from './app.html';
@@ -18,7 +20,8 @@ class App {}
 
 const routes: RouterConfig = [
   { path: '',   component: ViewPlantsList},
-  { path: 'plant/:plantId',   component: ViewPlantDetails}
+  { path: 'plant/:plantId',   component: ViewPlantDetails},
+  { path: 'new', component: NewPage}
 ];
 
 const APP_ROUTER_PROVIDERS = [
