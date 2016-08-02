@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
 import { Tracker } from 'meteor/tracker';
 import {Plants} from '../../../collections/plants.ts';
 
@@ -8,7 +8,8 @@ import template from './view-plant-details.html';
 
 @Component({
     selector: 'view-plant-details',
-    template
+    template,
+    directives: [ROUTER_DIRECTIVES]
 })
 export class ViewPlantDetails {
     plantId: string;
@@ -26,5 +27,16 @@ export class ViewPlantDetails {
                 });
             });
         });
+    }
+
+    savePlant(plant) {
+        console.log()
+        Plants.update(plant._id, {
+            $set: {
+                name: plant.name,
+                description: plant.description,
+                location: plant.location
+            }
+        })
     }
 }
