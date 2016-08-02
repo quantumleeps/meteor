@@ -18,6 +18,7 @@ export class NewPage {
     
     ngOnInit() {
         console.log(this.router.routerState)
+        /* lksjdf */
     }
 
 
