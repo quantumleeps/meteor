@@ -13,7 +13,7 @@ import template from './view-plant-details.html';
 })
 export class ViewPlantDetails {
     plantId: string;
-    plant: Object;
+    plant: Plant;
 
     constructor(private route: ActivatedRoute, private ngZone: NgZone, public router: Router) {}
     

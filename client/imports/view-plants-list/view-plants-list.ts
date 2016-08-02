@@ -15,7 +15,7 @@ import template from './view-plants-list.html';
 })
 
 export class ViewPlantsList {
-  plants: Mongo.Cursor<Object>;
+  plants: Mongo.Cursor<Plant>;
  
   constructor() {
     this.plants = Plants.find();
