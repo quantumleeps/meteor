@@ -1,0 +1,11 @@
+<div>
+ <add-plants-form></add-plants-form>
+  <ul>
+    <li *ngFor="let plant of plants">
+      <a [routerLink]="['/plant', plant._id]">{{plant.name}}</a>
+      <p>{{plant.description}}</p>
+      <p>{{plant.location}}</p>
+      <button (click)="removePlant(plant)">X</button>
+    </li>
+  </ul>
+</div>

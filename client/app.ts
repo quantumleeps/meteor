@@ -1,9 +1,10 @@
 import 'reflect-metadata';
-import { Component } from '@angular/core';
+import { Component, provide } from '@angular/core';
 import { bootstrap } from 'angular2-meteor-auto-bootstrap';
-import { Plants }   from '../collections/plants';
-import { Mongo }     from 'meteor/mongo';
-import { AddPlantsForm } from './imports/add-plants-form/add-plants-form';
+import { provideRouter, RouterConfig, ROUTER_DIRECTIVES } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
+import { ViewPlantsList } from './imports/view-plants-list/view-plants-list.ts';
+import { ViewPlantDetails } from './imports/view-plant-details/view-plant-details.ts';
 
 
 import template from './app.html';
@@ -11,15 +12,19 @@ import template from './app.html';
 @Component({
   selector: 'app',
   template,
-  directives: [AddPlantsForm]
+  directives: [ROUTER_DIRECTIVES]
 })
-class App { 
+class App {}
 
-    plants: Mongo.Cursor<Object>;
- 
-  constructor () {
-    this.plants = Plants.find();
-  }
-}
- 
-bootstrap(App);
+const routes: RouterConfig = [
+  { path: '',   component: ViewPlantsList},
+  { path: 'plant/:plantId',   component: ViewPlantDetails}
+];
+
+const APP_ROUTER_PROVIDERS = [
+  provideRouter(routes)
+];
+
+
+
+bootstrap(App, [APP_ROUTER_PROVIDERS, provide(APP_BASE_HREF, { useValue: '/' })]);
